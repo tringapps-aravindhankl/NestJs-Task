@@ -10,10 +10,19 @@ export class PostRepository extends BaseRepository<Post> {
     super(Post, dataSource.createEntityManager());
   }
 
+  public async getAllpost(){
+    return this.find();
+  }
+  
   async createPost(createPostInput: CreatePostInput) {
     return this.save({
-      name: createPostInput.postName,
+      postname: createPostInput.postName,
+      postorder: createPostInput.postorder,
       userId: createPostInput.userId,
     });
+  }
+
+  async deletePost(postid):Promise<Boolean>{
+      return (await this.softDelete(postid)).affected>0;
   }
 }

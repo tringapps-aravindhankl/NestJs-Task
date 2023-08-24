@@ -9,4 +9,12 @@ export class PostService {
   create(createPostInput: CreatePostInput) {
     return this.postRepo.createPost(createPostInput);
   }
+
+  public async getAllpost(){
+    return this.postRepo.getAllpost();
+  }
+
+  public async deletePost(id) :Promise<Boolean>{
+    return this.postRepo.deletePost(id)
+  }
 }
